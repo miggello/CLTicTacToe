@@ -14,7 +14,8 @@ namespace CLTicTacToe
 
         public Game()
         {
-            _name = "Default";
+            DateTime dt = DateTime.Now;
+            _name = "Game_" + dt.ToString();
             _gameResult = result.Incomplete;
             _playerNumber = assignPlayer();
         }

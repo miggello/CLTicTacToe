@@ -26,8 +26,40 @@ namespace CLTicTacToe
                 if (new[] { "Y", "y", "Yes", "yes" }.Contains(response))
                 {
                     //Start Play Menu
-                    Console.WriteLine("You played a game! (Not Yet Implemented)");
-                    Console.WriteLine("Would you like to play another?");
+                    do
+                    {
+                        Console.WriteLine("Instructions: (i), Play: (p), Exit: (e)");
+                        response = Console.ReadLine();
+
+                        if (response == "i" || response == "I")
+                        {
+                            Console.WriteLine("When prompted enter the number shown in the cell you would like to place your token (X) in as seen below:\n");
+                            Console.WriteLine(" 1 | 2 | 3 ");
+                            Console.WriteLine("___|___|___");
+                            Console.WriteLine("   |   |   ");
+                            Console.WriteLine(" 4 | 5 | 6 ");
+                            Console.WriteLine("___|___|___");
+                            Console.WriteLine("   |   |   ");
+                            Console.WriteLine(" 7 | 8 | 9 \n");
+                        }
+                        else if (response == "p" || response == "P")
+                        {
+                            //play a game
+                            Game testgame = new Game();
+                            Console.WriteLine("Game was named: " + testgame.Name);
+                            Console.WriteLine("Would you like to play another?");
+                        }
+                        else if (response == "e" || response == "E")
+                        {
+                            Console.WriteLine("Thank you for playing!");
+                            return;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Entry.");
+                        }
+                    }
+                    while (true);
                 }
                 else if (new[] { "N", "n", "No", "no" }.Contains(response))
                 {

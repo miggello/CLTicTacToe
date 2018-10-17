@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,16 +23,12 @@ namespace CLTicTacToe
 
             while (runApp)
             {
-                Console.WriteLine("Menu: (U) Reset Username | (E) Exit");
+                Console.WriteLine("Main Menu: (L) Load Profile | (E) Exit");
                 string arg = Console.ReadLine();
 
-                if (arg == "U")
+                if (arg == "L")
                 {
-                    Console.WriteLine("Please enter your desired Username");
-                    string user = Console.ReadLine();
-                    myProfile.changeUsername(user);
-
-                    Console.WriteLine("Your username is: " + myProfile.Username);
+                    StreamReader reader = new StreamReader("profiles.txt");
                 }
                 if (arg == "E")
                 {
@@ -51,7 +48,7 @@ namespace CLTicTacToe
                     //Start Play Menu
                     do
                     {
-                        Console.WriteLine("Instructions: (i), Play: (p), Exit: (e)");
+                        Console.WriteLine("(I) - Instructions | (P) Play | (E) Exit");
                         response = Console.ReadLine();
 
                         if (response == "i" || response == "I")
@@ -90,18 +87,6 @@ namespace CLTicTacToe
             }
             while (true);
             
-        }
-
-        private static void writeInstructions()
-        {
-            Console.WriteLine("When prompted enter the number shown in the cell you would like to place your token (X) in as seen below:\n");
-            Console.WriteLine(" 1 | 2 | 3 ");
-            Console.WriteLine("___|___|___");
-            Console.WriteLine("   |   |   ");
-            Console.WriteLine(" 4 | 5 | 6 ");
-            Console.WriteLine("___|___|___");
-            Console.WriteLine("   |   |   ");
-            Console.WriteLine(" 7 | 8 | 9 \n");
         }
         */
         }

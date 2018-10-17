@@ -6,8 +6,35 @@ using System.Threading.Tasks;
 
 namespace CLTicTacToe
 {
+    
+
     public class Profile
     {
+        //Profile Menu
+        
+        public static void menu()
+        {
+            bool runFlag = true;
+
+            do
+            {
+                string response;
+                Console.WriteLine("(P) - Play Tic Tac Toe | (E) - Exit");
+                response = Console.ReadLine();
+                switch (response)
+                {
+                    case "P":
+                        Console.WriteLine("Not Yet Implemented");
+                        //play();
+                        break;
+                    case "E":
+                        runFlag = false;
+                        break;
+                }
+            } while (runFlag);
+            
+        }
+
         private string _username;
         private string _password;
 

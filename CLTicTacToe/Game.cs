@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CLTicTacToe
 {
-    class Game
+    public class Game
     {
         private string _name;
         private result _gameResult;
@@ -65,6 +65,19 @@ namespace CLTicTacToe
             }
         }
 
+        //draw game instructions.
+        private static void writeInstructions()
+        {
+            Console.WriteLine("When prompted enter the number shown in the cell you would like to place your token (X) in as seen below:\n");
+            Console.WriteLine(" 1 | 2 | 3 ");
+            Console.WriteLine("___|___|___");
+            Console.WriteLine("   |   |   ");
+            Console.WriteLine(" 4 | 5 | 6 ");
+            Console.WriteLine("___|___|___");
+            Console.WriteLine("   |   |   ");
+            Console.WriteLine(" 7 | 8 | 9 \n");
+        }
+
         //Evaluate Game for Winner
         private result evaluateGame()
         {
@@ -76,5 +89,11 @@ namespace CLTicTacToe
         {
 
         }
+
+        public void play()
+        {
+            
+        }
+
     }
 }

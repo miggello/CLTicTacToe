@@ -15,8 +15,31 @@ namespace CLTicTacToe
             4. Store game data in a basic user profile.
             5. Calculate statistics based on user profile and game data.
         */
-        static void Main(string[] args)
+        static void Main()
         {
+            bool runApp = true;
+            Profile myProfile = new Profile("Miggello", "mypassword");
+
+            while (runApp)
+            {
+                Console.WriteLine("Menu: (U) Reset Username | (E) Exit");
+                string arg = Console.ReadLine();
+
+                if (arg == "U")
+                {
+                    Console.WriteLine("Please enter your desired Username");
+                    string user = Console.ReadLine();
+                    myProfile.changeUsername(user);
+
+                    Console.WriteLine("Your username is: " + myProfile.Username);
+                }
+                if (arg == "E")
+                {
+                    runApp = false;
+                }
+            }
+
+            /*
             string response;
             Console.WriteLine("Welcome to Command Line Tic Tac Toe! Would you like to play a game? (y/n)\n");
 
@@ -33,14 +56,7 @@ namespace CLTicTacToe
 
                         if (response == "i" || response == "I")
                         {
-                            Console.WriteLine("When prompted enter the number shown in the cell you would like to place your token (X) in as seen below:\n");
-                            Console.WriteLine(" 1 | 2 | 3 ");
-                            Console.WriteLine("___|___|___");
-                            Console.WriteLine("   |   |   ");
-                            Console.WriteLine(" 4 | 5 | 6 ");
-                            Console.WriteLine("___|___|___");
-                            Console.WriteLine("   |   |   ");
-                            Console.WriteLine(" 7 | 8 | 9 \n");
+                            writeInstructions();
                         }
                         else if (response == "p" || response == "P")
                         {
@@ -74,6 +90,20 @@ namespace CLTicTacToe
             }
             while (true);
             
+        }
+
+        private static void writeInstructions()
+        {
+            Console.WriteLine("When prompted enter the number shown in the cell you would like to place your token (X) in as seen below:\n");
+            Console.WriteLine(" 1 | 2 | 3 ");
+            Console.WriteLine("___|___|___");
+            Console.WriteLine("   |   |   ");
+            Console.WriteLine(" 4 | 5 | 6 ");
+            Console.WriteLine("___|___|___");
+            Console.WriteLine("   |   |   ");
+            Console.WriteLine(" 7 | 8 | 9 \n");
+        }
+        */
         }
     }
 }

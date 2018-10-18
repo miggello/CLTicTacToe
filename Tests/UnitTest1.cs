@@ -8,7 +8,7 @@ namespace Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void profileUsernameSetter()
+        public void ProfileUsernameSetter()
         {
             Profile myprofile = new Profile("Mike", "test");
 

@@ -18,11 +18,11 @@ namespace CLTicTacToe
         */
         static void Main()
         {
-            Game testGame = new Game("test",Game.difficulty.Easy);
+            Game testGame = new Game("test",Game.Difficulty.Normal);
 
             Console.WriteLine("You are player number " + testGame.PlayerNumber + ". Your token is 'X'");
-            Console.WriteLine("Difficulty is set to: " + testGame.Difficulty);
-            testGame.play();
+            Console.WriteLine("Difficulty is set to: " + testGame.Dif);
+            testGame.Play();
             //bool runApp = true;
             //Profile myProfile = new Profile("Miggello", "mypassword");
 

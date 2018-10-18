@@ -12,7 +12,7 @@ namespace CLTicTacToe
     {
         //Profile Menu
         
-        public static void menu()
+        public static void Menu()
         {
             bool runFlag = true;
 
@@ -36,7 +36,7 @@ namespace CLTicTacToe
         }
 
         private string _username;
-        private string _password;
+        private readonly string _password;
 
 
         public Profile()
@@ -59,7 +59,7 @@ namespace CLTicTacToe
             }
         }
 
-        private bool validPassword()
+        private bool ValidPassword()
         {
             Console.WriteLine("Please enter your password");
             do
@@ -82,9 +82,9 @@ namespace CLTicTacToe
             while (true);
         }
 
-        public void changeUsername(string Username)
+        public void ChangeUsername(string Username)
         {
-            if (validPassword())
+            if (ValidPassword())
             {
                 _username = Username;
             }

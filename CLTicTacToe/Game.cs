@@ -8,10 +8,9 @@ namespace CLTicTacToe
 {
     internal class Game
     {
-        private string _name;
-        private result _gameResult;
-        private int _playerNumber;
-        private difficulty _difficulty;
+        private Result _gameResult;
+        private readonly int _playerNumber;
+        private readonly Difficulty _difficulty;
 
         public int PlayerNumber
         {
@@ -24,26 +23,26 @@ namespace CLTicTacToe
         public Game()
         {
             DateTime dt = DateTime.Now;
-            _name = "Game_" + dt.ToString();
-            _gameResult = result.Incomplete;
-            _playerNumber = assignPlayer();
-            _difficulty = difficulty.Easy;
+            Name = "Game_" + dt.ToString();
+            _gameResult = Result.Incomplete;
+            _playerNumber = AssignPlayer();
+            _difficulty = Difficulty.Easy;
         }
 
-        public Game(string name, difficulty dif)
+        public Game(string name, Difficulty dif)
         {
-            _name = name;
-            _gameResult = result.Incomplete;
-            _playerNumber = assignPlayer();
+            Name = name;
+            _gameResult = Result.Incomplete;
+            _playerNumber = AssignPlayer();
             _difficulty = dif;
         }
 
-        private int assignPlayer()
+        private int AssignPlayer()
         {
             Random rand = new Random();
             if (rand.NextDouble() > 0.5)
             {
-                return 2;
+                return 1;
             }
             else
             {
@@ -51,20 +50,20 @@ namespace CLTicTacToe
             }
         }
 
-        public enum difficulty
+        public enum Difficulty
         {
             Easy = 1,
             Normal,
             Hard
         }
 
-        private enum playerType
+        private enum PlayerType
         {
             Human = 1,
             Computer
         }
 
-        private enum result
+        private enum Result
         {
             Incomplete = 1,
             Draw,
@@ -72,7 +71,7 @@ namespace CLTicTacToe
             Loss
         }
 
-        public difficulty Difficulty
+        public Difficulty Dif
         {
             get
             {
@@ -83,20 +82,10 @@ namespace CLTicTacToe
         protected List<int> moves = new List<int>();
 
         //TODO Add error handling for invalid names.
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+        public string Name { get; set; }
 
         //TODO create make move method
-        public void makeMove(int move)
+        public void MakeMove(int move)
         {
             if (moves.Count() == 9)
             {
@@ -109,7 +98,7 @@ namespace CLTicTacToe
         }
 
         //draw game instructions.
-        private static void writeInstructions()
+        private static void WriteInstructions()
         {
             Console.WriteLine("When prompted enter the number shown in the cell you would like to place your token (X) in as seen below:\n");
             Console.WriteLine(" 1 | 2 | 3 ");
@@ -122,37 +111,37 @@ namespace CLTicTacToe
         }
 
         //Evaluate Game for Winner
-        private bool evaluateGame()
+        private bool EvaluateGame()
         {
             List<int> evmoves;
                 
-            evmoves = getMoves(playerType.Human);
+            evmoves = GetMoves(PlayerType.Human);
 
-            if (hasWin(evmoves))
+            if (HasWin(evmoves))
             {
-                _gameResult = result.Win;
+                _gameResult = Result.Win;
                 return false;
             }
 
-            evmoves = getMoves(playerType.Computer);
+            evmoves = GetMoves(PlayerType.Computer);
 
-            if (hasWin(evmoves))
+            if (HasWin(evmoves))
             {
-                _gameResult = result.Loss;
+                _gameResult = Result.Loss;
                 return false;
             }
 
             if(moves.Count >= 9)
             {
-                _gameResult = result.Draw;
+                _gameResult = Result.Draw;
                 return false;
             }
 
-            _gameResult = result.Incomplete;
+            _gameResult = Result.Incomplete;
             return true;
         }
 
-        private bool hasWin(List<int> evmoves)
+        private bool HasWin(List<int> evmoves)
         {
             int[][] wins = new int[8][]
             {
@@ -177,20 +166,20 @@ namespace CLTicTacToe
             return false;
         }
 
-        private List<int> getMoves(playerType ptype)
+        private List<int> GetMoves(PlayerType ptype)
         {
             List<int> movesList = new List<int> { };
                 int i = 0;
-                if (_playerNumber == 2 && ptype == playerType.Human)
+                if (_playerNumber == 2 && ptype == PlayerType.Human)
                 {
                     i = 1;
                 }
-                if(_playerNumber == 1 && ptype == playerType.Computer)
+                if(_playerNumber == 1 && ptype == PlayerType.Computer)
                 {
                     i = 1;
                 }
 
-                while (i < moves.Count - 1)
+                while (i < moves.Count)
                 {
                     movesList.Add(moves[i]);
                     i += 2;
@@ -198,20 +187,19 @@ namespace CLTicTacToe
                 return movesList;
         }
 
-        //TODO create draw board method
-        public void drawBoard()
+        public void DrawBoard()
         {
             Console.Write("   Board: \n\n");
-            Console.Write(" {0} | {1} | {2} \n",getToken(1), getToken(2), getToken(3));
+            Console.Write(" {0} | {1} | {2} \n",GetToken(1), GetToken(2), GetToken(3));
             Console.Write("___|___|___\n");
             Console.Write("   |   |   \n");
-            Console.Write(" {0} | {1} | {2} \n",getToken(4),getToken(5),getToken(6));
+            Console.Write(" {0} | {1} | {2} \n",GetToken(4),GetToken(5),GetToken(6));
             Console.Write("___|___|___\n");
             Console.Write("   |   |   \n");
-            Console.Write(" {0} | {1} | {2} \n\n",getToken(7),getToken(8),getToken(9));
+            Console.Write(" {0} | {1} | {2} \n\n",GetToken(7),GetToken(8),GetToken(9));
         }
 
-        private char getToken(int moveindex)
+        private char GetToken(int moveindex)
         {
             if (moves.Contains(moveindex))
             {
@@ -243,87 +231,106 @@ namespace CLTicTacToe
             }
         }
 
-        public void play()
+        public void Play()
         {
-            if (_gameResult != result.Incomplete)
+            if (_gameResult != Result.Incomplete)
             {
                 throw new Exception("Completed games cannot be re-played!");
             }
 
-            writeInstructions();
+            WriteInstructions();
 
             if (_playerNumber == 1)
             {
-                while(evaluateGame())
+                while(EvaluateGame())
                 {
-                    drawBoard();
-                    playerMove();
-                    if(evaluateGame())
+                    DrawBoard();
+                    PlayerMove();
+                    if(EvaluateGame())
                     {
-                        computerMove();
+                        ComputerMove();
                     }
                 }
             }
             else
             {
-                while (evaluateGame())
+                while (EvaluateGame())
                 {
-                    computerMove();
-                    drawBoard();
-                    if(evaluateGame())
+                    ComputerMove();
+                    DrawBoard();
+                    if (EvaluateGame())
                     {
-                        playerMove();
+                        PlayerMove();
+
                     }
                 }
             }
 
-            drawBoard();
+            DrawBoard();
             Console.WriteLine("This game's result was a " + _gameResult + "!");
-            Console.WriteLine(string.Join(",", moves));
 
         }
 
-        private void playerMove()
+        private void PlayerMove()
         {
             while (true)
             { 
                 Console.Write("Enter Your Move! ");
-                validMoves();
+                ValidMoves();
                 string strmove = Console.ReadLine();
                 if (int.TryParse(strmove, out int intMove) && intMove > -1 && intMove < 10)
                 {
                     if (moves.Contains(intMove))
                     {
                         Console.WriteLine("That move has already been made!");
-                        validMoves();
+                        ValidMoves();
                     }
                     else
                     {
-                        makeMove(intMove);
+                        MakeMove(intMove);
                         break;
                     }
                 }
                 else
                 {
                     Console.Write("Invalid Move.");
-                    validMoves();
+                    ValidMoves();
                 }
             }
         }
 
-        private void computerMove()
+        private void ComputerMove()
         {
-            for (int i = 1; i < 10; i++)
+            switch (_difficulty)
             {
-                if (moves.Contains(i) == false)
-                {
-                    makeMove(i);
+                case Difficulty.Normal:
+                    while (true)
+                    {
+                        Random rand = new Random();
+                        double seed = rand.NextDouble();
+                        int i = (int)(seed * 10);
+                        if (moves.Contains(i) == false)
+                        {
+                            MakeMove(i);
+                            break;
+                        }
+                    }
                     break;
-                }
+                case Difficulty.Hard:
+                default:
+                    for (int i = 1; i < 10; i++)
+                    {
+                        if (moves.Contains(i) == false)
+                        {
+                            MakeMove(i);
+                            break;
+                        }
+                    }
+                    break;
             }
         }
 
-        private void validMoves()
+        private void ValidMoves()
         {
             Console.WriteLine("The following are valid moves:");
             Console.Write("(");

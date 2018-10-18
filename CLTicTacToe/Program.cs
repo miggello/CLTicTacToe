@@ -18,77 +18,82 @@ namespace CLTicTacToe
         */
         static void Main()
         {
-            bool runApp = true;
-            Profile myProfile = new Profile("Miggello", "mypassword");
+            Game testGame = new Game("test",Game.difficulty.Easy);
 
-            while (runApp)
-            {
-                Console.WriteLine("Main Menu: (L) Load Profile | (E) Exit");
-                string arg = Console.ReadLine();
+            Console.WriteLine("You are player number " + testGame.PlayerNumber + ". Your token is 'X'");
+            Console.WriteLine("Difficulty is set to: " + testGame.Difficulty);
+            testGame.play();
+            //bool runApp = true;
+            //Profile myProfile = new Profile("Miggello", "mypassword");
 
-                if (arg == "L")
-                {
-                    StreamReader reader = new StreamReader("profiles.txt");
-                }
-                if (arg == "E")
-                {
-                    runApp = false;
-                }
-            }
+            //while (runApp)
+            //{
+            //    Console.WriteLine("Main Menu: (L) Load Profile | (E) Exit");
+            //    string arg = Console.ReadLine();
 
-            /*
-            string response;
-            Console.WriteLine("Welcome to Command Line Tic Tac Toe! Would you like to play a game? (y/n)\n");
-
-            do
-            {
-                response = Console.ReadLine();
-                if (new[] { "Y", "y", "Yes", "yes" }.Contains(response))
-                {
-                    //Start Play Menu
-                    do
-                    {
-                        Console.WriteLine("(I) - Instructions | (P) Play | (E) Exit");
-                        response = Console.ReadLine();
-
-                        if (response == "i" || response == "I")
-                        {
-                            writeInstructions();
-                        }
-                        else if (response == "p" || response == "P")
-                        {
-                            //play a game
-                            Game testgame = new Game();
-                            Console.WriteLine("Game was named: " + testgame.Name);
-                            Console.WriteLine("Would you like to play another?");
-                        }
-                        else if (response == "e" || response == "E")
-                        {
-                            Console.WriteLine("Thank you for playing!");
-                            return;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid Entry.");
-                        }
-                    }
-                    while (true);
-                }
-                else if (new[] { "N", "n", "No", "no" }.Contains(response))
-                {
-                    //exit application
-                    break;
-                }
-                else
-                {
-                    //invalid response
-                    Console.WriteLine("Invalid Response, please enter 'y' for yes, or 'n' for no.");
-                }
-            }
-            while (true);
-            
-        }
-        */
+            //    if (arg == "L")
+            //    {
+            //        StreamReader reader = new StreamReader("profiles.txt");
+            //    }
+            //    if (arg == "E")
+            //    {
+            //        runApp = false;
+            //    }
+            //}
         }
     }
 }
+
+/*
+string response;
+Console.WriteLine("Welcome to Command Line Tic Tac Toe! Would you like to play a game? (y/n)\n");
+
+do
+{
+    response = Console.ReadLine();
+    if (new[] { "Y", "y", "Yes", "yes" }.Contains(response))
+    {
+        //Start Play Menu
+        do
+        {
+            Console.WriteLine("(I) - Instructions | (P) Play | (E) Exit");
+            response = Console.ReadLine();
+
+            if (response == "i" || response == "I")
+            {
+                writeInstructions();
+            }
+            else if (response == "p" || response == "P")
+            {
+                //play a game
+                Game testgame = new Game();
+                Console.WriteLine("Game was named: " + testgame.Name);
+                Console.WriteLine("Would you like to play another?");
+            }
+            else if (response == "e" || response == "E")
+            {
+                Console.WriteLine("Thank you for playing!");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Entry.");
+            }
+        }
+        while (true);
+    }
+    else if (new[] { "N", "n", "No", "no" }.Contains(response))
+    {
+        //exit application
+        break;
+    }
+    else
+    {
+        //invalid response
+        Console.WriteLine("Invalid Response, please enter 'y' for yes, or 'n' for no.");
+    }
+}
+while (true);
+
+}
+*/
